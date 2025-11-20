@@ -1,4 +1,4 @@
 function AppName() {
-  return <h1>Todo React Application </h1>;
+  return <h1>Todo Application </h1>;
 }
 export default AppName;
