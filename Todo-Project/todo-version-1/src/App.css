@@ -15,9 +15,10 @@ input{
 
 .kg-row{
   margin: 10px 5px;
-
+  align-items: center;
 }
 
 .kg-button{
-  width:80%;
+  width: 100%;
+  white-space: nowrap;
 }
