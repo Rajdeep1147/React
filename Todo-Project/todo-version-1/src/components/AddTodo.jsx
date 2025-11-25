@@ -1,12 +1,18 @@
+import React from "react";
+import style from "./AddTodo.module.css";
 function AddTodo() {
   return (
     <div className="container text-center">
       <div className="row kg-row">
         <div className="col-6">
-          <input type="text" placeholder="Enter Todo Here" className="form-control"></input>
+          <input
+            type="text"
+            placeholder="Enter Todo Here"
+            className={`form-control ${style["todo-Input"]}`}
+          ></input>
         </div>
         <div className="col-4">
-          <input type="date" className="form-control" />{" "}
+          <input type="date" className="form-control todo-Input" />
         </div>
         <div className="col-2">
           <button type="button" className="btn btn-success kg-button">
