@@ -1,29 +1,19 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import React from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import FoodItems from "./Components/FoodItems";
+import ErrorMessage from "./Components/ErrorMessage";
 
 function App() {
-  // let foodItmes = [];
-  let foodItmes = ["Dall", "Green Vegetables", "Rice", "Roti"];
-  // if (foodItmes.length === 0) {
-  //   return <h3>I am Still Hungry</h3>;
-  // }
-  let emptyMessage = foodItmes.length === 0 && <h3>I am Still Hungry</h3>;
+  const foodItems = ["Daal", "Green Vegetables", "Rice", "Roti"];
+  // const foodItems = [];
   return (
-    <>
-      <h1>Healthy Food </h1>
-      {emptyMessage}
-      <ul className="list-group">
-        {foodItmes.map((item) => (
-          <li key={item} className="list-group-item">
-            {item}
-          </li>
-        ))}
-      </ul>
-    </>
+    <div className="container mt-4">
+      <h1 className="text-center mb-4 food-heading">Healthy Food</h1>
+      {/* Pass foodItems to children */}
+      <ErrorMessage items={foodItems} />
+      <FoodItems items={foodItems} />
+    </div>
   );
 }
 
