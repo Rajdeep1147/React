@@ -1,23 +1,21 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import AppName from "./components/AppName.jsx";
 import AddTodo from "./components/AddTodo.jsx";
-import TodoItem1 from "./components/TodoItem1.jsx";
-import TodoItem2 from "./components/TodoItem2.jsx";
 import "./App.css";
+import TodoItems from "./components/TodoItems.jsx";
 
 function App() {
-  const [count, setCount] = useState(0);
+  let todoItems = [
+    { name: "Buy Milk", date: "04/10/2025" },
+    { name: "Go College", date: "04/11/2025" },
+    { name: "Go Office", date: "01/01/2026" },
+  ];
 
   return (
     <center className="todo-container">
       <AppName />
       <AddTodo />
-      <div className="item-container">
-        <TodoItem1 />
-        <TodoItem2 />
-      </div>
+      <TodoItems todoItems={todoItems} />
     </center>
   );
 }
