@@ -1,10 +1,15 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
+import { Button } from "bootstrap";
+import styles from "./App.module.css";
+import Display from "./components/Display";
+import ButtonContainer from "./components/ButtonContainer";
 
 function App() {
-  return <></>;
+  return (
+    <div className={styles.calculator}>
+      <Display />
+      <ButtonContainer />
+    </div>
+  );
 }
 
 export default App;
