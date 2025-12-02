@@ -34,9 +34,6 @@ function App() {
         {/* <p>{textToShow}</p> */}
         <FoodItems items={foodItems} />
       </Container>
-      {/* <Container>
-        <p>Above is the List Of Healthy Foods That Are Good For Your Healthy</p>
-      </Container> */}
     </>
   );
 }

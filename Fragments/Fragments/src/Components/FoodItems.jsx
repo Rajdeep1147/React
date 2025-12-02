@@ -1,7 +1,14 @@
 import Item from "./Item";
+import { useState } from "react";
 
 const FoodItems = ({ items }) => {
   // Ensure items is always an array
+  let [activeItems, setActiveItems] = useState([]);
+
+  let onBuyButton = (item, event) => {
+    let newItems = [...activeItems, item];
+    setActiveItems(newItems);
+  };
 
   return (
     <div>
@@ -11,7 +18,8 @@ const FoodItems = ({ items }) => {
             <Item
               key={item}
               foodItem={item}
-              handleByButton={() => console.log(`${item} Being Bought`)}
+              bought={activeItems.includes(item)}
+              handleByButton={(event) => onBuyButton(item, event)}
             />
           ))}
         </ul>
