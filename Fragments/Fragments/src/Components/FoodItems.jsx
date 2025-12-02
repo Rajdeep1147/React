@@ -8,6 +8,12 @@ const FoodItems = ({ items }) => {
   let onBuyButton = (item, event) => {
     let newItems = [...activeItems, item];
     setActiveItems(newItems);
+    if (activeItems.includes(item)) {
+      let filteredItems = activeItems.filter(
+        (activeItem) => activeItem !== item
+      );
+      setActiveItems(filteredItems);
+    }
   };
 
   return (
