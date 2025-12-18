@@ -1,54 +1,44 @@
-import { useState } from "react";
+import { useRef } from "react";
 import style from "./AddTodo.module.css";
 import { IoMdAddCircle } from "react-icons/io";
 
 function AddTodo({ onNewItem }) {
-  const [todoName, setTodoName] = useState("");
-  const [todoDate, setDueDate] = useState("");
+  const todoNameRef = useRef();
+  const todoDateRef = useRef();
 
-  const handleTodoNameChange = (event) => {
-    setTodoName(event.target.value);
-  };
-
-  const handleTodoDateChange = (event) => {
-    setDueDate(event.target.value);
-  };
-
-  const handleAddButtonClick = () => {
+  const handleAddButtonClick = (event) => {
+    event.preventDefault();
+    const todoName = todoNameRef.current.value;
+    const todoDate = todoDateRef.current.value;
+    todoDateRef.current.value = "";
+    todoNameRef.current.value = "";
     onNewItem(todoName, todoDate);
-    setDueDate("");
-    setTodoName("");
   };
+
   return (
     <div className="container text-center">
-      <div className="row kg-row">
+      <form className="row kg-row" onSubmit={handleAddButtonClick}>
         <div className="col-6">
           <input
             type="text"
+            ref={todoNameRef}
             placeholder="Enter Todo Here"
             className={`form-control ${style["todo-Input"]}`}
-            value={todoName}
-            onChange={handleTodoNameChange}
           ></input>
         </div>
         <div className="col-4">
           <input
             type="date"
+            ref={todoDateRef}
             className="form-control todo-Input"
-            value={todoDate}
-            onChange={handleTodoDateChange}
           />
         </div>
         <div className="col-2">
-          <button
-            type="button"
-            className="btn btn-success kg-button"
-            onClick={handleAddButtonClick}
-          >
+          <button type="submit" className="btn btn-success kg-button">
             <IoMdAddCircle />
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

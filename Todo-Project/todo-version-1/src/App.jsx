@@ -4,6 +4,7 @@ import AddTodo from "./components/AddTodo.jsx";
 import "./App.css";
 import TodoItems from "./components/TodoItems.jsx";
 import WelcomeMessage from "./components/WelcomeMessage.jsx";
+import TodoItemsContext from "./store/todo-items-store.jsx";
 
 function App() {
   let intialTodoItems = [];
@@ -11,9 +12,10 @@ function App() {
   let [todoItems, settodoItems] = useState(intialTodoItems);
 
   const handleNewItem = (itemName, itemDueDate) => {
-    console.log("New Item:", itemName, itemDueDate);
-    const newTodoItems = [...todoItems, { name: itemName, date: itemDueDate }];
-    settodoItems(newTodoItems);
+    settodoItems((prevTodoItems) => [
+      ...prevTodoItems,
+      { name: itemName, date: itemDueDate },
+    ]);
   };
 
   const handleDeteleItem = (todoItemName) => {
@@ -22,14 +24,19 @@ function App() {
     settodoItems(newTodoItems);
   };
 
-  return (
-    <center className="todo-container">
-      <AppName />
-      <AddTodo onNewItem={handleNewItem} />
-      {todoItems.length == 0 && <WelcomeMessage todoItems={todoItems} />}
+  const defaultTodoItems = [{ name: "Buy Ghee", date: "2024-07-01" }];
 
-      <TodoItems todoItems={todoItems} onDeleteClick={handleDeteleItem} />
-    </center>
+  return (
+    <>
+      <TodoItemsContext.Provider value={defaultTodoItems}>
+        <center className="todo-container">
+          <AppName />
+          <AddTodo onNewItem={handleNewItem} />
+          <WelcomeMessage todoItems={todoItems} />
+          <TodoItems todoItems={todoItems} onDeleteClick={handleDeteleItem} />
+        </center>
+      </TodoItemsContext.Provider>
+    </>
   );
 }
 
