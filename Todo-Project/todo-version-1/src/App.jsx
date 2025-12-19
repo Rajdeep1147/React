@@ -11,29 +11,32 @@ function App() {
 
   let [todoItems, settodoItems] = useState(intialTodoItems);
 
-  const handleNewItem = (itemName, itemDueDate) => {
+  const addNewItem = (itemName, itemDueDate) => {
     settodoItems((prevTodoItems) => [
       ...prevTodoItems,
       { name: itemName, date: itemDueDate },
     ]);
   };
 
-  const handleDeteleItem = (todoItemName) => {
-    console.log("Delete Item at index:", todoItemName);
+  const deteleItem = (todoItemName) => {
     const newTodoItems = todoItems.filter((item) => item.name != todoItemName);
     settodoItems(newTodoItems);
   };
 
-  const defaultTodoItems = [{ name: "Buy Ghee", date: "2024-07-01" }];
-
   return (
     <>
-      <TodoItemsContext.Provider value={defaultTodoItems}>
+      <TodoItemsContext.Provider
+        value={{
+          todoItems: todoItems,
+          addNewItem: addNewItem,
+          deteleItem: deteleItem,
+        }}
+      >
         <center className="todo-container">
           <AppName />
-          <AddTodo onNewItem={handleNewItem} />
-          <WelcomeMessage todoItems={todoItems} />
-          <TodoItems todoItems={todoItems} onDeleteClick={handleDeteleItem} />
+          <AddTodo />
+          <WelcomeMessage />
+          <TodoItems />
         </center>
       </TodoItemsContext.Provider>
     </>
