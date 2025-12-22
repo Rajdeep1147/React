@@ -1,18 +1,20 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import style from "./AddTodo.module.css";
 import { IoMdAddCircle } from "react-icons/io";
+import TodoItemsContext from "../store/todo-items-store";
 
-function AddTodo({ onNewItem }) {
+function AddTodo() {
   const todoNameRef = useRef();
   const todoDateRef = useRef();
+  const { addNewItem } = useContext(TodoItemsContext);
 
   const handleAddButtonClick = (event) => {
     event.preventDefault();
     const todoName = todoNameRef.current.value;
     const todoDate = todoDateRef.current.value;
+    addNewItem(todoName, todoDate);
     todoDateRef.current.value = "";
     todoNameRef.current.value = "";
-    onNewItem(todoName, todoDate);
   };
 
   return (

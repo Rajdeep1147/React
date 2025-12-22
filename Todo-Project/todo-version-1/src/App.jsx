@@ -18,7 +18,7 @@ function App() {
     ]);
   };
 
-  const deteleItem = (todoItemName) => {
+  const deleteItem = (todoItemName) => {
     const newTodoItems = todoItems.filter((item) => item.name != todoItemName);
     settodoItems(newTodoItems);
   };
@@ -29,7 +29,7 @@ function App() {
         value={{
           todoItems: todoItems,
           addNewItem: addNewItem,
-          deteleItem: deteleItem,
+          deleteItem: deleteItem,
         }}
       >
         <center className="todo-container">
