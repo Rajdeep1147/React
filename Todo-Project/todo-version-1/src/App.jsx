@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import AppName from "./components/AppName.jsx";
 import AddTodo from "./components/AddTodo.jsx";
 import "./App.css";
@@ -10,6 +10,7 @@ function App() {
   let intialTodoItems = [];
 
   let [todoItems, settodoItems] = useState(intialTodoItems);
+  const [newTodoItems, setNewTodoItems] = useReducer();
 
   const addNewItem = (itemName, itemDueDate) => {
     settodoItems((prevTodoItems) => [
