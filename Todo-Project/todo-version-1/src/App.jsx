@@ -1,4 +1,4 @@
-import { useReducer, useState } from "react";
+import { useReducer } from "react";
 import AppName from "./components/AppName.jsx";
 import AddTodo from "./components/AddTodo.jsx";
 import "./App.css";
@@ -6,22 +6,40 @@ import TodoItems from "./components/TodoItems.jsx";
 import WelcomeMessage from "./components/WelcomeMessage.jsx";
 import TodoItemsContext from "./store/todo-items-store.jsx";
 
+const todoItemsReducer = (currentTodoItems, action) => {
+  if (action.type === "ADD_ITEM") {
+    const newTodoItems = [
+      ...currentTodoItems,
+      {
+        id: Date.now(),
+        name: action.payload.name,
+        date: action.payload.date,
+      },
+    ];
+    return newTodoItems;
+  }else if(action.type === "DELETE_ITEM"){
+    const newTodoItems = currentTodoItems.filter((item) => item.name !== action.payload.name);
+    return newTodoItems;
+  }
+  return currentTodoItems;
+};
 function App() {
-  let intialTodoItems = [];
-
-  let [todoItems, settodoItems] = useState(intialTodoItems);
-  const [newTodoItems, setNewTodoItems] = useReducer();
+  const [todoItems, dispatchTodoItem] = useReducer(todoItemsReducer, []);
 
   const addNewItem = (itemName, itemDueDate) => {
-    settodoItems((prevTodoItems) => [
-      ...prevTodoItems,
-      { name: itemName, date: itemDueDate },
-    ]);
+    const newTodoItem = { 
+      type: "ADD_ITEM", 
+      payload: { name: itemName, date: itemDueDate },
+    };
+    dispatchTodoItem(newTodoItem);
   };
 
   const deleteItem = (todoItemName) => {
-    const newTodoItems = todoItems.filter((item) => item.name != todoItemName);
-    settodoItems(newTodoItems);
+    const deleteItemAction = {
+      type:"DELETE_ITEM",
+      payload: { name: todoItemName },
+    }
+    dispatchTodoItem(deleteItemAction);
   };
 
   return (
