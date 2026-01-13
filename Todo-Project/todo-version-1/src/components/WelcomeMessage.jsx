@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import TodoItemsContext from "../store/todo-items-store";
+import { TodoItemsContext } from "../store/todo-items-store";
 import Styles from "./WelcomeMessage.module.css";
 const WelcomeMessage = () => {
   const contextObj = useContext(TodoItemsContext);

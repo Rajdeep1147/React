@@ -1,7 +1,7 @@
 import { useContext, useRef } from "react";
 import style from "./AddTodo.module.css";
 import { IoMdAddCircle } from "react-icons/io";
-import TodoItemsContext from "../store/todo-items-store";
+import { TodoItemsContext } from "../store/todo-items-store";
 
 function AddTodo() {
   const todoNameRef = useRef();
