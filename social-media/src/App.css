@@ -13,6 +13,7 @@
   height: 100vh;
   position: sticky;
   top: 0;
+  width: 80px;
 }
 
 .post-card {
@@ -31,4 +32,9 @@
   width: 80%;
   margin: 10%;
   margin-top: 50px;
+}
+
+.welcome-message {
+  margin-top: 100px;
+  margin-bottom: 0px;
 }

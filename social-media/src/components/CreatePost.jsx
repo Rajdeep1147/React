@@ -1,4 +1,5 @@
 import { use, useContext, useRef } from "react";
+import { PostList } from "../store/post-list-store.jsx";
 
 const CreatePost = () => {
   const userIdElement = useRef();
@@ -19,13 +20,7 @@ const CreatePost = () => {
       .split(",")
       .map((tag) => tag.trim());
 
-    addPost({
-      userId,
-      title: postTitle,
-      body: postBody,
-      reactions: postReactions,
-      tags: postTags,
-    });
+    addPost(postTitle, postBody, userId, postReactions, postTags);
   };
 
   return (
