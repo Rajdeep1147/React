@@ -17,6 +17,9 @@ const PostList = () => {
         addIntialPosts(data.products);
         setFetching(false);
       });
+    return () => {
+      console.log("Cleanup done!");
+    };
   }, []);
 
   return (
