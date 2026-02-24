@@ -11,7 +11,9 @@ const PostList = () => {
 
   useEffect(() => {
     setFetching(true);
-    fetch("https://dummyjson.com/products")
+    const controller = new AbortController();
+    const signal = controller.signal;
+    fetch("https://dummyjson.com/products", { signal })
       .then((res) => res.json())
       .then((data) => {
         addIntialPosts(data.products);
@@ -19,6 +21,7 @@ const PostList = () => {
       });
     return () => {
       console.log("Cleanup done!");
+      controller.abort();
     };
   }, []);
 
